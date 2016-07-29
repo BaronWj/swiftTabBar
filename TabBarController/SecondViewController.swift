@@ -12,6 +12,6 @@ import UIKit
 class SecondViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad();
-        self.view.backgroundColor = UIColor.redColor();
+        self.view.backgroundColor = UIColor.whiteColor();
     }
 }

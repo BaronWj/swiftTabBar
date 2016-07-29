@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6623BCC41D49A42000656445 /* FirstViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6623BCC31D49A42000656445 /* FirstViewCell.swift */; };
+		6623BCC71D49B3CD00656445 /* ZQTestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6623BCC61D49B3CD00656445 /* ZQTestCell.xib */; };
 		66B1FC861D489BE6002DA13A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B1FC851D489BE6002DA13A /* AppDelegate.swift */; };
 		66B1FC881D489BE6002DA13A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B1FC871D489BE6002DA13A /* ViewController.swift */; };
 		66B1FC8B1D489BE6002DA13A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66B1FC891D489BE6002DA13A /* Main.storyboard */; };
@@ -29,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6623BCC31D49A42000656445 /* FirstViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewCell.swift; sourceTree = "<group>"; };
+		6623BCC61D49B3CD00656445 /* ZQTestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZQTestCell.xib; sourceTree = "<group>"; };
 		66B1FC821D489BE6002DA13A /* TabBarController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TabBarController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		66B1FC851D489BE6002DA13A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		66B1FC871D489BE6002DA13A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +66,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6623BCBF1D49A38E00656445 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				66B1FCA51D489C03002DA13A /* FirstViewController.swift */,
+				66B1FCA71D489C1E002DA13A /* SecondViewController.swift */,
+				66B1FCA91D489C31002DA13A /* ThirdViewController.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		6623BCC01D49A3DD00656445 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6623BCC31D49A42000656445 /* FirstViewCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		6623BCC51D49B38100656445 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				6623BCC61D49B3CD00656445 /* ZQTestCell.xib */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
 		66B1FC791D489BE6002DA13A = {
 			isa = PBXGroup;
 			children = (
@@ -83,15 +113,15 @@
 		66B1FC841D489BE6002DA13A /* TabBarController */ = {
 			isa = PBXGroup;
 			children = (
+				6623BCC51D49B38100656445 /* Cell */,
+				6623BCC01D49A3DD00656445 /* View */,
+				6623BCBF1D49A38E00656445 /* ViewController */,
 				66B1FC851D489BE6002DA13A /* AppDelegate.swift */,
 				66B1FC871D489BE6002DA13A /* ViewController.swift */,
 				66B1FC891D489BE6002DA13A /* Main.storyboard */,
 				66B1FC8C1D489BE6002DA13A /* Assets.xcassets */,
 				66B1FC8E1D489BE6002DA13A /* LaunchScreen.storyboard */,
 				66B1FC911D489BE6002DA13A /* Info.plist */,
-				66B1FCA51D489C03002DA13A /* FirstViewController.swift */,
-				66B1FCA71D489C1E002DA13A /* SecondViewController.swift */,
-				66B1FCA91D489C31002DA13A /* ThirdViewController.swift */,
 			);
 			path = TabBarController;
 			sourceTree = "<group>";
@@ -186,6 +216,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6623BCC71D49B3CD00656445 /* ZQTestCell.xib in Resources */,
 				66B1FC901D489BE6002DA13A /* LaunchScreen.storyboard in Resources */,
 				66B1FC8D1D489BE6002DA13A /* Assets.xcassets in Resources */,
 				66B1FC8B1D489BE6002DA13A /* Main.storyboard in Resources */,
@@ -209,6 +240,7 @@
 				66B1FCA81D489C1E002DA13A /* SecondViewController.swift in Sources */,
 				66B1FCA61D489C03002DA13A /* FirstViewController.swift in Sources */,
 				66B1FCAA1D489C31002DA13A /* ThirdViewController.swift in Sources */,
+				6623BCC41D49A42000656445 /* FirstViewCell.swift in Sources */,
 				66B1FC881D489BE6002DA13A /* ViewController.swift in Sources */,
 				66B1FC861D489BE6002DA13A /* AppDelegate.swift in Sources */,
 			);
@@ -400,6 +432,7 @@
 				66B1FCA11D489BE6002DA13A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		66B1FCA21D489BE6002DA13A /* Build configuration list for PBXNativeTarget "TabBarControllerUITests" */ = {
 			isa = XCConfigurationList;
@@ -408,6 +441,7 @@
 				66B1FCA41D489BE6002DA13A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

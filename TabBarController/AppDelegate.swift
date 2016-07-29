@@ -20,31 +20,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window!.backgroundColor = UIColor.whiteColor()
         
-        
-        let vc1:UIViewController = FirstViewController();
-        let nav1 = UINavigationController(rootViewController:vc1);
-        let image1 = UIImage(named: "");
-        nav1.tabBarItem = UITabBarItem(title: "会话",image: nil,tag: 1);
-        
-        let vc2:UIViewController = SecondViewController();
-        let nav2 = UINavigationController(rootViewController:vc2);
-        nav2.tabBarItem = UITabBarItem(title: "通讯录",image: image1,tag: 1);
-
-        
-        let vc3:UIViewController = ThirdViewController();
-        let nav3 = UINavigationController(rootViewController:vc3);
-        nav3.tabBarItem = UITabBarItem(title: "设置",image: nil,tag: 1);
-
-        
-        let arr = [nav1,nav2,nav3];
-        let tabBarController = UITabBarController();
-        tabBarController.viewControllers = arr;
-        self.window!.rootViewController = tabBarController;
+        tabBarItem();
         self.window!.makeKeyAndVisible();
         
         return true
     }
 
+    
+    func tabBarItem() {
+        let vc1:UIViewController = FirstViewController();
+        vc1.navigationItem.title = "会话";
+        let nav1 = UINavigationController(rootViewController:vc1);
+        let image1 = UIImage(named: "ic_message_n");
+        nav1.tabBarItem = UITabBarItem(title: "会话",image: image1,tag: 1);
+        
+        let vc2:UIViewController = SecondViewController();
+        vc2.navigationItem.title = "通讯录";
+        let nav2 = UINavigationController(rootViewController:vc2);
+        let image2 = UIImage(named: "ic_home_n");
+        nav2.tabBarItem = UITabBarItem(title: "通讯录",image: image2,tag: 1);
+        
+        
+        let vc3:UIViewController = ThirdViewController();
+        vc3.navigationItem.title = "设置";
+        let nav3 = UINavigationController(rootViewController:vc3);
+        let image3 = UIImage(named: "ic_mine_n");
+        nav3.tabBarItem = UITabBarItem(title: "设置",image: image3,tag: 1);
+        
+        
+        let arr = [nav1,nav2,nav3];
+        let tabBarController = UITabBarController();
+        tabBarController.viewControllers = arr;
+        self.window!.rootViewController = tabBarController;
+    }
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
