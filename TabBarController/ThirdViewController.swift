@@ -9,6 +9,8 @@
 
 import Foundation
 import UIKit
+
+@objc(ThirdViewController)
 class ThirdViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad();

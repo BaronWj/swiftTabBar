@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+@objc(SecondViewController)
 class SecondViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad();

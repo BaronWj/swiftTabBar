@@ -9,8 +9,8 @@
 
 import Foundation
 import UIKit
-
-class FirstViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+@objc(FirstViewController)
+class FirstViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate {
     //数据源
     var dataArr = NSMutableArray();
     
@@ -21,8 +21,9 @@ class FirstViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         
         super.viewDidLoad();
         self.view.backgroundColor = UIColor.whiteColor()
+        self.setupNavigation();
         var _tableView :UITableView?;
-
+        
         //初始化数据源
         for i in 0...20{
             dataArr.addObject("row\(i)");
@@ -39,6 +40,15 @@ class FirstViewController: UIViewController,UITableViewDelegate,UITableViewDataS
 
         self.view.addSubview(_tableView!);
     }
+    
+    
+    func setupNavigation() {
+        self.navigationController?.navigationBar.translucent = false
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        self.title = "会话列表"        
+    }
+    
+    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 60;
     }
@@ -62,7 +72,7 @@ class FirstViewController: UIViewController,UITableViewDelegate,UITableViewDataS
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let nextViewCon = ViewController();
+        let nextViewCon = ChatViewController();
         nextViewCon.title = "详情";
         nextViewCon.hidesBottomBarWhenPushed = true;
         self.navigationController?.pushViewController(nextViewCon, animated: true);

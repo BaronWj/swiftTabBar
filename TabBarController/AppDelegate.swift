@@ -20,11 +20,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window!.backgroundColor = UIColor.whiteColor()
         
-        tabBarItem();
+//        tabBarItem();
+       self.setupRootView();
         self.window!.makeKeyAndVisible();
         
         return true
     }
+
+    
+    func setupRootView() {
+//        if NSUserDefaults.standardUserDefaults().objectForKey(kuserName) != nil {
+            self.window?.rootViewController = JChatMainTabViewController.sharedInstance
+//        } else {
+//            if NSUserDefaults.standardUserDefaults().objectForKey(klastLoginUserName) != nil {
+//                let rootVC = JChatAlreadyLoginViewController()
+//                let rootNV = UINavigationController(rootViewController: rootVC)
+//                self.window?.rootViewController = rootNV
+//            } else {
+//                let rootVC = JChatLoginViewController()
+//                let rootNV = UINavigationController(rootViewController: rootVC)
+//                self.window?.rootViewController = rootNV
+//            }
+//        }
+        
+        UINavigationBar.appearance().barTintColor = UIColor(netHex: 0x3f80de)
+        
+        UINavigationBar.appearance().translucent = false  //TODO: ios8
+        
+        let shadow = NSShadow()
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSForegroundColorAttributeName: UIColor.whiteColor(),
+            NSFontAttributeName: UIFont.boldSystemFontOfSize(20),
+            NSShadowAttributeName: shadow
+        ]
+        
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        
+    }
+//    
+//    func application(application: UIApplication,
+//                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+//        JPUSHService.registerDeviceToken(deviceToken)
+//    }
 
     
     func tabBarItem() {
