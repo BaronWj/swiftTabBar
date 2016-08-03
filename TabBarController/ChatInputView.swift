@@ -9,7 +9,7 @@
 
 import Foundation
 import UIKit
-
+import SnapKit
 class ChatInputView: UIView {
     var inputWrapView : UIView!
     var switchBtn:UIButton!
@@ -45,30 +45,30 @@ class ChatInputView: UIView {
         self.inputWrapView.backgroundColor = UIColor(netHex: 0xdfdfdf)
         self.addSubview(inputWrapView)
         
-//        moreView?.snp_makeConstraints(closure: { (make) -> Void in
-//            make.left.right.equalTo(self)
-//            make.height.equalTo(0)
-//            make.bottom.equalTo(self.snp_bottom)
-//            make.top.equalTo(self.inputWrapView.snp_bottom)
-//        })
+        moreView?.snp_makeConstraints(closure: { (make) -> Void in
+            make.left.right.equalTo(self)
+            make.height.equalTo(0)
+            make.bottom.equalTo(self.snp_bottom)
+            make.top.equalTo(self.inputWrapView.snp_bottom)
+        })
         
         self.showPhotoBtn = UIButton()
         self.moreView.addSubview(self.showPhotoBtn)
         self.showPhotoBtn.setImage(UIImage(named: "photo_24"), forState: .Normal)
-//        self.showPhotoBtn.addTarget(self, action: #selector(JChatInputView.clickShowPhotoBtn), forControlEvents: .TouchUpInside)
-//        self.showPhotoBtn.snp_makeConstraints { (make) -> Void in
-//            make.top.equalTo(self.moreView).offset(10)
-//            make.left.equalTo(self.moreView).offset(10)
-//            make.size.equalTo(CGSize(width: 50, height: 50))
-//        }
+//        self.showPhotoBtn.addTarget(self, action: #selector(ChatInputView.clickShowPhotoBtn), forControlEvents: .TouchUpInside)
+        self.showPhotoBtn.snp_makeConstraints { (make) -> Void in
+            make.top.equalTo(self.moreView).offset(10)
+            make.left.equalTo(self.moreView).offset(10)
+            make.size.equalTo(CGSize(width: 50, height: 50))
+        }
         
 //        // 输入框的view
-//        self.inputWrapView.snp_makeConstraints { (make) -> Void in
-//            make.left.right.top.equalTo(self)
-//            make.bottom.equalTo(inputWrapView.snp_top)
-//            make.height.equalTo(35)
-//        }
-//        
+        self.inputWrapView.snp_makeConstraints { (make) -> Void in
+            make.left.right.top.equalTo(self)
+            make.bottom.equalTo(inputWrapView.snp_top)
+            make.height.equalTo(35)
+        }
+//
         // 切换  录音 和 文本输入
         self.switchBtn = UIButton()
         self.switchBtn.setImage(UIImage(named: "voice_toolbar"), forState: .Normal)
@@ -76,11 +76,11 @@ class ChatInputView: UIView {
         
 //        self.switchBtn.addTarget(self, action: #selector(JChatInputView.changeInputMode), forControlEvents: .TouchUpInside)
         self.addSubview(self.switchBtn!)
-//        switchBtn?.snp_makeConstraints(closure: { (make) -> Void in
-//            make.left.equalTo(inputWrapView).offset(4)
-//            make.bottom.equalTo(inputWrapView).offset(-4)
-//            make.size.equalTo(CGSize(width: 27, height: 27))
-//        })
+        switchBtn?.snp_makeConstraints(closure: { (make) -> Void in
+            make.left.equalTo(inputWrapView).offset(4)
+            make.bottom.equalTo(inputWrapView).offset(-4)
+            make.size.equalTo(CGSize(width: 27, height: 27))
+        })
         
         // 其他功能展示
         self.showMoreBtn = UIButton()
@@ -88,11 +88,11 @@ class ChatInputView: UIView {
         self.showMoreBtn.setBackgroundImage(UIImage(named: "add01_pre"), forState: .Highlighted)
 //        self.showMoreBtn.addTarget(self, action: #selector(JChatInputView.changeMoreViewStatus), forControlEvents: .TouchUpInside)
         self.addSubview(self.showMoreBtn)
-//        showMoreBtn?.snp_makeConstraints(closure: { (make) -> Void in
-//            make.right.equalTo(inputWrapView).offset(-4)
-//            make.bottom.equalTo(inputWrapView).offset(-4)
-//            make.size.equalTo(CGSize(width: 27, height: 27))
-//        })
+        showMoreBtn?.snp_makeConstraints(closure: { (make) -> Void in
+            make.right.equalTo(inputWrapView).offset(-4)
+            make.bottom.equalTo(inputWrapView).offset(-4)
+            make.size.equalTo(CGSize(width: 27, height: 27))
+        })
         
         // 输入宽的大小
 //        self.inputTextView = JChatMessageInputView()
@@ -105,15 +105,15 @@ class ChatInputView: UIView {
 //        self.inputTextView.delegate = self
         self.inputTextView.enablesReturnKeyAutomatically = true
         self.addSubview(self.inputTextView!)
-//        inputTextView?.snp_makeConstraints(closure: { (make) -> Void in
-//            make.right.equalTo(self.showMoreBtn.snp_left).offset(-5)
-//            make.left.equalTo(self.switchBtn.snp_right).offset(5)
-//            make.top.equalTo(inputWrapView).offset(5)
-//            make.bottom.equalTo(inputWrapView).offset(-5)
-//            make.height.greaterThanOrEqualTo(30)
-//            make.height.lessThanOrEqualTo(100)
-//        })
-//        self.updateInputTextViewHeight(self.inputTextView)
+        inputTextView?.snp_makeConstraints(closure: { (make) -> Void in
+            make.right.equalTo(self.showMoreBtn.snp_left).offset(-5)
+            make.left.equalTo(self.switchBtn.snp_right).offset(5)
+            make.top.equalTo(inputWrapView).offset(5)
+            make.bottom.equalTo(inputWrapView).offset(-5)
+            make.height.greaterThanOrEqualTo(30)
+            make.height.lessThanOrEqualTo(100)
+        })
+        self.updateInputTextViewHeight(self.inputTextView)
         
         // 录音按钮
         self.recordVoiceBtn = UIButton()
@@ -138,7 +138,32 @@ class ChatInputView: UIView {
         
     }
     
-    
-    
-    
 }
+
+extension ChatInputView:UITextViewDelegate {
+    func textViewDidChange(textView: UITextView) {
+        self.updateInputTextViewHeight(textView)
+    }
+    
+    func updateInputTextViewHeight(textView: UITextView) {
+        let textContentH = textView.contentSize.height
+        print("output：\(textContentH)")
+        let textHeight = textContentH > 35 ? (textContentH<100 ? textContentH:100):30
+        UIView.animateWithDuration(0.2) { () -> Void in
+            self.inputTextView.snp_updateConstraints(closure: { (make) -> Void in
+                make.height.equalTo(textHeight)
+            })
+        }
+        
+    }
+    
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+//            self.inputDelegate.sendTextMessage(self.inputTextView.text)
+            self.inputTextView.text = ""
+            return false
+        }
+        return true
+    }
+}
+

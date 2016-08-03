@@ -19,6 +19,8 @@ let kNavigationLeftButtonRect = CGRectMake(0, 0, 30, 30)
 let kGoBackBtnImageOffset = UIEdgeInsetsMake(0, 0, 0, 15)
 
 let kApplicationWidth = CGRectGetWidth((UIScreen.mainScreen().bounds))
+let kApplicationHeight = CGRectGetHeight((UIScreen.mainScreen().bounds))
+
 
 // notification
 let kDeleteAllMessage = "deleteAllMessage"

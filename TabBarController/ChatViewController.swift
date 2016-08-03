@@ -12,14 +12,20 @@ import UIKit
 @objc(ChatViewController)
 class ChatViewController: UIViewController,UIGestureRecognizerDelegate{
     var messageInputView:ChatInputView!
+//    var chatLayout:JChatChattingLayout!
+    var messageTable:JChatMessageTable!
 
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad();
         self.view.backgroundColor = UIColor.whiteColor();
         self.setupNavigation();
-//        
+       
+     messageInputView = ChatInputView(frame:CGRectMake(0, kApplicationHeight - 44-44-20, kApplicationWidth, 44))
+        messageInputView.backgroundColor = UIColor.brownColor()
+       self.view.addSubview(messageInputView);
 //        self.chatLayout = JChatChattingLayout(messageTable: self.messageTable, inputView: self.messageInputView)
         
     }
@@ -29,7 +35,8 @@ class ChatViewController: UIViewController,UIGestureRecognizerDelegate{
     }
     
     override func viewWillAppear(animated: Bool) {
-        
+        super.viewWillAppear(animated);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardFrameChange(_:)), name: UIKeyboardWillChangeFrameNotification, object: nil)
     }
     
     
@@ -71,6 +78,24 @@ class ChatViewController: UIViewController,UIGestureRecognizerDelegate{
 //        detailCtl.chattingVC = self
 //        self.navigationController?.pushViewController(detailCtl, animated: true)
     }
+    
+    func keyboardFrameChange(notification:NSNotification){
+        let dic = NSDictionary(dictionary: notification.userInfo!)
+        let keyboardValue = dic.objectForKey(UIKeyboardFrameEndUserInfoKey) as! NSValue
+        let bottomDistance = kApplicationHeight - keyboardValue.CGRectValue().origin.y
+        let duration = Double(dic.objectForKey(UIKeyboardAnimationDurationUserInfoKey) as! NSNumber)
+        
+        UIView.animateWithDuration(duration,animations:{
+            self.messageInputView.moreView?.snp_updateConstraints(closure: { (make) in
+                make.height.equalTo(bottomDistance)
+            })
+            self.view.layoutIfNeeded()
+        },completion:{
+            (value:Bool) in
+        })
+        
+    }
+    
     
 }
 
