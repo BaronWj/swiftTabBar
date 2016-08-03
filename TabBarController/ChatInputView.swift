@@ -21,6 +21,8 @@ class ChatInputView: UIView {
     var moreView: UIView!
     var showPhotoBtn: UIButton!
     
+//    weak var inputDelegate:ChatInputViewDelegate!
+
     
     override init(frame: CGRect){
        super.init(frame: frame)
