@@ -10,6 +10,13 @@
 import Foundation
 import UIKit
 import SnapKit
+
+protocol ChatInputViewDelegete:NSObjectProtocol {
+    // photo
+    func showMoreView()
+    func photoClick()
+}
+
 class ChatInputView: UIView {
     var inputWrapView : UIView!
     var switchBtn:UIButton!
@@ -21,7 +28,7 @@ class ChatInputView: UIView {
     var moreView: UIView!
     var showPhotoBtn: UIButton!
     
-//    weak var inputDelegate:ChatInputViewDelegate!
+    weak var inputDelegate:ChatInputViewDelegete!
 
     
     override init(frame: CGRect){
@@ -57,7 +64,7 @@ class ChatInputView: UIView {
         self.showPhotoBtn = UIButton()
         self.moreView.addSubview(self.showPhotoBtn)
         self.showPhotoBtn.setImage(UIImage(named: "photo_24"), forState: .Normal)
-//        self.showPhotoBtn.addTarget(self, action: #selector(ChatInputView.clickShowPhotoBtn), forControlEvents: .TouchUpInside)
+        self.showPhotoBtn.addTarget(self, action: #selector(ChatInputView.clickShowPhotoBtn), forControlEvents: .TouchUpInside)
         self.showPhotoBtn.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(self.moreView).offset(10)
             make.left.equalTo(self.moreView).offset(10)
@@ -88,7 +95,7 @@ class ChatInputView: UIView {
         self.showMoreBtn = UIButton()
         self.showMoreBtn.setBackgroundImage(UIImage(named: "add01"), forState: .Normal)
         self.showMoreBtn.setBackgroundImage(UIImage(named: "add01_pre"), forState: .Highlighted)
-//        self.showMoreBtn.addTarget(self, action: #selector(JChatInputView.changeMoreViewStatus), forControlEvents: .TouchUpInside)
+        self.showMoreBtn.addTarget(self, action: #selector(ChatInputView.changeMoreViewStatus), forControlEvents: .TouchUpInside)
         self.addSubview(self.showMoreBtn)
         showMoreBtn?.snp_makeConstraints(closure: { (make) -> Void in
             make.right.equalTo(inputWrapView).offset(-4)
@@ -139,6 +146,26 @@ class ChatInputView: UIView {
 //        }
         
     }
+    
+    
+    func changeMoreViewStatus() {
+        CATransaction.begin()
+        hideKeyBoardAnimation()
+        self.superview!.layoutIfNeeded()
+        self.moreView.snp_updateConstraints { (make) -> Void in
+            make.height.equalTo(150)
+        }
+        UIView.animateWithDuration(keyboardAnimationDuration) { () -> Void in
+            
+            self.superview!.layoutIfNeeded()
+        }
+        CATransaction.commit()
+    }
+    
+    func clickShowPhotoBtn() {
+        self.inputDelegate.photoClick()
+    }
+    
     
 }
 
